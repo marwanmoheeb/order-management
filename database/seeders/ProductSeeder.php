@@ -14,21 +14,23 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
+        $faker = \Faker\Factory::create();
+
         $products = [
             [
-                'product_name' => fake()->words(3, true),
-                'description' => fake()->paragraph(),
-                'price' => fake()->randomFloat(2, 5, 500),
+                'product_name' => $faker->words(3, true),
+                'description' => $faker->paragraph(),
+                'price' => $faker->randomFloat(2, 5, 500),
             ],
             [
-                'product_name' => fake()->words(3, true),
-                'description' => fake()->paragraph(),
-                'price' => fake()->randomFloat(2, 5, 500),
+                'product_name' => $faker->words(3, true),
+                'description' => $faker->paragraph(),
+                'price' => $faker->randomFloat(2, 5, 500),
             ],
             [
-                'product_name' => fake()->words(3, true),
-                'description' => fake()->paragraph(),
-                'price' => fake()->randomFloat(2, 5, 500),
+                'product_name' => $faker->words(3, true),
+                'description' => $faker->paragraph(),
+                'price' => $faker->randomFloat(2, 5, 500),
             ],
         ];
 

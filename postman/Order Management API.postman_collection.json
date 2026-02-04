@@ -1,0 +1,768 @@
+{
+	"info": {
+		"_postman_id": "cf00f50d-e563-4e21-ad2e-595b8b1daccc",
+		"name": "Order Management API",
+		"description": "API collection for the Order Management Laravel project.\n\n**Setup:**\n1. Run Login request first to get a token.\n2. Token is auto-saved to collection variable `token`.\n3. Auth requests use Bearer token automatically.\n\n**Base URL:** Update `base_url` variable if your server differs (e.g. `http://localhost:8000` for `php artisan serve`).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31122670"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var json = pm.response.json();",
+									"    if (json.token) {",
+									"        pm.collectionVariables.set('token', json.token);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@user.com\",\n    \"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "Authenticate and get Bearer token. Token is saved to collection variable for subsequent requests."
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"user@user.com\",\n    \"password\": \"password\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 04 Feb 2026 22:04:09 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Win64) OpenSSL/1.1.1c PHP/7.4.1"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZThlODg5MTkyMTI4NDE5MTM4NTM2MjZmNjlkNzFlYWY1MjRjYWVhODY4YjZiNGU2YWVjY2YyZTU2NGMxMjFiNDIwYTJkMGEwNjljNDcxZDkiLCJpYXQiOjE3NzAyNDI2NTEsIm5iZiI6MTc3MDI0MjY1MSwiZXhwIjoxODAxNzc4NjUxLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.0WUyj3ewCRoVdksJnIISdZXhWoiZX7py9Odp1wYUqkClpBxrZvQDYEbS1AQsqReKMAmp22GjGLWiUfDsIw0JuyEaM_TYUJI-kiD793eLZ61tnm-tLBT-5WgY9dSPh0ZG2wHiu4UXZkqM9IpNU6RuWwsKfZPfgQSSS2UW5qFAz4Ck5bp6l5_7I_WsZFkhen-DKrUF0xcBEErazMyiiPvdyL-48sr-nZ50cVMSSJgNXyaxIeVy3-lv86pFcjEC8l6qnCiWcz6HVHvuMlZjl2UnZJOVjmu1peA6G36chUPs6kS9GIAhbzmUXwjl-2IBjxXYQmFhkxMT6Fa73rzAIutnpBQuFXtJ6GPKzjYfHn4LQJr5L4Bt7aPF6xlGu3G0Xa8DepSM-MJl3iAN1Cj8xUO5DzwKw4k12Kk92mwZF8SZCyhRyHdTC_uc0qUpZloCIOZnmZ5c74xyVNZhQLJmBkZ8kmkgiuOdSuGXCY4Yy78Z9ekrGvV7Ucf81BrJ3ifzo4UYSrWGZ3TJ4x6LnnYNDFuSVEw_Bk6RMuDKA6TMhfnXCdgqtfEoysyQaSCKi3xcFIaXO6Nm2vWtO0spFMJo_HAQpboJidz_CWSoJvL1YGir2xvI70F4qOIu8QorD23oRQNSgwzu1c7w2ppPEqX3c3yKB1qt-sqMZ9u0nrBp_v3-Hzg\",\n    \"token_type\": \"Bearer\",\n    \"user\": {\n        \"id\": 1,\n        \"name\": \"Test User\",\n        \"email\": \"user@user.com\",\n        \"email_verified_at\": null,\n        \"created_at\": \"2026-02-04T22:02:37.000000Z\",\n        \"updated_at\": \"2026-02-04T22:03:50.000000Z\"\n    }\n}"
+						},
+						{
+							"name": "fail",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"user@test.com\",\n    \"password\": \"password\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 04 Feb 2026 22:04:31 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Win64) OpenSSL/1.1.1c PHP/7.4.1"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The given data was invalid.\",\n    \"errors\": {\n        \"email\": [\n            \"The provided credentials are incorrect.\"\n        ]\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"items\": [\n        {\n            \"product_id\": 1,\n            \"quantity\": 2\n        },\n        {\n            \"product_id\": 2,\n            \"quantity\": 1\n        }\n    ],\n    \"payment_method\": \"credit_card\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/orders",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						},
+						"description": "Create a new order with items and payment method."
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"items\": [\n        {\n            \"product_id\": 1,\n            \"quantity\": 2\n        },\n        {\n            \"product_id\": 2,\n            \"quantity\": 1\n        }\n    ],\n    \"payment_method\": \"credit_card\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/orders",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 04 Feb 2026 22:10:11 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Win64) OpenSSL/1.1.1c PHP/7.4.1"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Order created successfully\",\n    \"order\": {\n        \"user_id\": 1,\n        \"total\": 916.2,\n        \"updated_at\": \"2026-02-04T22:10:11.000000Z\",\n        \"created_at\": \"2026-02-04T22:10:11.000000Z\",\n        \"id\": 5,\n        \"order_items\": [\n            {\n                \"id\": 7,\n                \"order_id\": 5,\n                \"product_id\": 1,\n                \"quantity\": 2,\n                \"price\": \"265.06\",\n                \"created_at\": \"2026-02-04T22:10:11.000000Z\",\n                \"updated_at\": \"2026-02-04T22:10:11.000000Z\"\n            },\n            {\n                \"id\": 8,\n                \"order_id\": 5,\n                \"product_id\": 2,\n                \"quantity\": 1,\n                \"price\": \"386.08\",\n                \"created_at\": \"2026-02-04T22:10:11.000000Z\",\n                \"updated_at\": \"2026-02-04T22:10:11.000000Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "List Orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/orders?status=completed",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "completed"
+								}
+							]
+						},
+						"description": "Get all orders for the authenticated user."
+					},
+					"response": [
+						{
+							"name": "confirmed filter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/orders?status=completed",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "completed"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 04 Feb 2026 22:22:57 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Win64) OpenSSL/1.1.1c PHP/7.4.1"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orders\": [\n        {\n            \"id\": 6,\n            \"user_id\": 1,\n            \"total\": \"795.18\",\n            \"status\": \"completed\",\n            \"created_at\": \"2026-02-04T22:18:21.000000Z\",\n            \"updated_at\": \"2026-02-04T22:22:41.000000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"items\": [\n        {\n            \"product_id\": 1,\n            \"quantity\": 3,\n            \"price\": 29.99\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/orders/{{order_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"{{order_id}}"
+							]
+						},
+						"description": "Update an existing order's items."
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/orders/{{order_id}}/confirm",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"{{order_id}}",
+								"confirm"
+							]
+						},
+						"description": "Confirm an order and trigger payment processing."
+					},
+					"response": [
+						{
+							"name": "successful order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/orders/{{order_id}}/confirm",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										"{{order_id}}",
+										"confirm"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 04 Feb 2026 22:21:54 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Win64) OpenSSL/1.1.1c PHP/7.4.1"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Order confirmed successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/orders/{{order_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"{{order_id}}"
+							]
+						},
+						"description": "Delete an order. Fails if order has payments."
+					},
+					"response": [
+						{
+							"name": "cant delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/orders/{{order_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										"{{order_id}}"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 04 Feb 2026 22:22:09 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Win64) OpenSSL/1.1.1c PHP/7.4.1"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Order has payments, cannot be deleted\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost/order-management/public"
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "order_id",
+			"value": "1"
+		}
+	]
+}

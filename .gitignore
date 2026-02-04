@@ -13,3 +13,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# Database dumps (place .sql or .sql.gz here; they are not committed)
+/database/dumps/*.sql
+/database/dumps/*.sql.gz
